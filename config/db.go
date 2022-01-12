@@ -9,6 +9,8 @@ import (
 	"gorm.io/gorm"
 )
 
+var DB *gorm.DB
+
 // configuration for connecting to database
 
 func ConnectDatabase() *gorm.DB {

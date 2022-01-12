@@ -17,3 +17,13 @@ type (
 		UpdatedAt time.Time `json:"updated_at"`
 	}
 )
+
+type Pagination struct {
+	Limit int    `json:"limit"`
+	Page  int    `json:"page"`
+	Sort  string `json:"sort"`
+}
+
+func (b *Contact) TableName() string {
+	return "contact"
+}

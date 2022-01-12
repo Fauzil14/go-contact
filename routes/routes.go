@@ -21,6 +21,7 @@ func SetUpRouter(db *gorm.DB) *gin.Engine {
 	r.GET("/contact/:id", controllers.GetContactById)
 	r.PATCH("/contact/:id", controllers.UpdateContact)
 	r.DELETE("/contact/:id", controllers.DeleteContact)
+	r.GET("/contact/all", controllers.GetAllContactPaged)
 
 	return r
 }

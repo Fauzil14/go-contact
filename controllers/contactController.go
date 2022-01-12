@@ -2,6 +2,8 @@ package controllers
 
 import (
 	"go-contact/models"
+	"go-contact/repo"
+	"go-contact/utils"
 	"net/http"
 	"time"
 
@@ -116,4 +118,22 @@ func DeleteContact(c *gin.Context) {
 
 	// return json
 	c.JSON(http.StatusOK, gin.H{"data": true})
+}
+
+func GetAllContactPaged(c *gin.Context) {
+	pagination := utils.GeneratePaginationFromRequest(c)
+	var contact models.Contact
+	contactLists, err := repo.GetAllContacts(&contact, &pagination)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err,
+		})
+		return
+
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"data": contactLists,
+	})
+
 }
